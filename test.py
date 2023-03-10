@@ -151,7 +151,7 @@ def main(player: object):
                     )
                     if playGame == 1:
                         picked_monster = monsterPicker(
-                            monsterNames, levels, power, defense, player
+                            monsterNames, levels, power, defense, player=player
                         )
                         combat(player, picked_monster)
                     elif playGame == 2:
@@ -172,8 +172,7 @@ def main(player: object):
             elif player.status == "defeat":
                 sys("cls")
                 try:
-                    playGame = int(
-                        input(
+                    playGame = input(
                             f"""Looks like {picked_monster.name} whoooped your ass. What are you going to do about that?
                                                         
                                                         {player.hp}/{player.baseHP}
@@ -183,7 +182,6 @@ def main(player: object):
                                                         
                                                     selection: """
                         )
-                    )
                     if playGame == 1:
                         player.heal()
                         player.status = "ready"
@@ -194,8 +192,7 @@ def main(player: object):
                     print("Invalid selection! Try again")
                     continue
                 except:
-                    playGame = int(
-                        input(
+                    playGame =input(
                             f"""Welcome back, you're currently in the hospital. What would you like to do??
                                                         
                                                         1.Heal
@@ -203,7 +200,6 @@ def main(player: object):
                                                         
                                                     selection: """
                         )
-                    )
                     if playGame == 1:
                         player.heal()
                         player.status = "ready"
