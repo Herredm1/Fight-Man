@@ -1,7 +1,10 @@
 from roll import roll_dice
 import time
+from Player import Player
+from Monster import Monster
+ 
 
-def combat(player:object, monster:object):
+def combat(player:Player, monster:Monster):
     while player.hp > 0 and monster.hp > 0:
         die = roll_dice()
         # print(f'Die Value: {die}')
@@ -12,12 +15,12 @@ def combat(player:object, monster:object):
             print("You missed!")
         elif dmg > 0 and monster.hp > 0:
             print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
-            
         if monster.hp <= 0:
             monster.hp = 0
             print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
             print(f'Congratulations! You have defeated {monster.name}')
             print('Heading back home')
+            player.set_status('victory')
             input("Press enter to continue....")
             break
         time.sleep(1)
@@ -34,6 +37,7 @@ def combat(player:object, monster:object):
             player.hp = 0
             print(f'{monster.name} Hit for: {dmg}. Player health at {player.hp}')
             time.sleep(1)
+            player.set_status('defeat')
             print(f'The mighty {player.name} has been defeated by {monster.name}. Taking your character to the Hospital')
             input('Press enter to continue....')
             break

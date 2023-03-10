@@ -1,5 +1,7 @@
+from Monster import Monster
+
 class Player():
-    def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status, baseHP:int=None, hp:int=None,):
+    def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status,):
         self.name = name
         self.lvl = lvl
         self.str = str 
@@ -14,15 +16,17 @@ class Player():
         
     # Displays the characters Stats    
     def __str__(self):
-        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP]
+        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP, self.status]
         
         test = """
         Name    : {0}
         STR     : {3}
         DEF     : {5}
-        HP      : {2}/{8}""".format(*details)
+        HP      : {2}/{8}
+        Status  : {9}""".format(*details)
         
         return test
+        
 
     # For future ATTRIBUTE Update
     def addSTR(self, num:int):
@@ -41,7 +45,7 @@ class Player():
             pass
     
     # Might be what handles damage but unsure at this moment
-    def charAttack(self, monster:object, modifier:int=None):
+    def charAttack(self, monster:Monster, modifier:int=None):
         if modifier > 0:
             bonus = modifier
         else:
@@ -49,16 +53,25 @@ class Player():
         dmg = self.atk + bonus - monster.blkpwr
         monster.hp -= dmg
             
-    def heal(self):
-        if self.hp < self.baseHP:
-            self.hp = self.baseHP
-            # self.exp = self.baseEXP
+    def set_status(self, status):
+        self.status = status
+        
+    def heal_and_status(self):
+        self.hp = self.baseHP
+        if self.status =='defeat':
+            self.status = 'ready'
+        elif self.status == 'ready':
+            pass
+        else:
+            self.status = 'victory'
     
     # How health is updated for combat and healing        
     def healthUpdate(self, dmg:int=0, heal:int=0):
         # try:
         if dmg > 0:
             self.hp -= dmg
+            if self.hp <= 0:
+                self.exp = 0
         else:
             pass
         
