@@ -1,7 +1,7 @@
 from Player import Player
 from mobGenerator import monsterPicker
 from combat import combat
-from os import system
+from os import system as sys
 
 
 # Player Template       
@@ -56,26 +56,25 @@ def main(player:object):
             status = 'ready'
             player = Player(playerName, 1, might, protect, 0, status)
         elif player.status == 'ready':
-            stats = player.charDetail()
-            system('cls')
+            sys('cls')
             while player.status == 'ready':
                 try:    
-                    playGame = int(input(f"""What would you like to do
+                    playGame = int(input(f"""
+                                    What would you like to do
                                          
-                                        Name: {player.name}
-                                        STR : {player.str}
-                                        DEF : {player.denf}
-                                        HP  : {player.hp}/{player.baseHP}
+                                    {player}
                                     
                                             1. Fight
-                                            2. Exit
+                                            2. Save
+                                            3. Exit
                                             
                                         selection: """))
                     if playGame == 1:
                         picked_monster = monsterPicker(monsterNames, levels, power, defense, player)
                         combat(player, picked_monster)
                     elif playGame == 2:
-                        exit()
+                        sys.exit()
+                    
                 except:
                     print("Invalid selection! Try again")
                     continue
@@ -84,17 +83,16 @@ def main(player:object):
                 else:
                     player.status = 'victory'                
         elif player.status == 'victory':
-                system('cls')
+                sys('cls')
                 try:
-                    playGame = int(input(f"""That was amazaing! You defeated {picked_monster.name}. What would you like to do
+                    playGame = int(input(f"""
+                                         That was amazaing! You defeated {picked_monster.name}. What would you like to do
                                         
-                                            Name: {player.name}
-                                            STR : {player.str}
-                                            DEF : {player.denf}
-                                            HP  : {player.hp}/{player.baseHP}
+                                            {player}
                                         
                                                     1. Fight
-                                                    2. Heal 
+                                                    2. Heal
+                                                    3. Exit 
                                                     
                                                 selection: """))
                     if playGame == 1:
@@ -112,7 +110,7 @@ def main(player:object):
                     player.status = 'defeat'
                 
         elif player.status == 'defeat':
-            system('cls')
+            sys('cls')
             try:
                 playGame = int(input(f'''Looks like {picked_monster.name} whoooped your ass. What are you going to do about that?
                                                     
@@ -124,7 +122,7 @@ def main(player:object):
                     player.heal()
                     player.status = 'ready'
                 elif playGame == 2:
-                    exit()
+                    sys.exit()
             except:
                 print("Invalid selection! Try again")
                 continue

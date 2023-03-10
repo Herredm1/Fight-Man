@@ -38,10 +38,15 @@ class Player():
         monster.hp -= dmg
     
     # Displays the characters Stats    
-    def charDetail(self):
-        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr]
-        for detail in details:
-            print(detail)
+    def __str__(self):
+        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP]
+        
+        test = """
+        Name: {0}
+        STR : {3}
+        DEF : {5}
+        HP  : {2}/{8}""".format(*details)
+        return test
             
     def heal(self):
         if self.hp < self.baseHP:
@@ -62,3 +67,7 @@ class Player():
             self.hp += heal
             if self.hp > self.baseHP:
                 self.hp == self.baseHP
+
+
+test = Player('temp', 1 , 0, 0, 0, 'new')
+
