@@ -7,11 +7,13 @@ from Save import Save
 
 # playerCard Template
 playerCard = Player("temp", 0, 0, 0, 0, "new")
-try:
-    Save('save.db').get_option(playerCard)
-    playerCard = Save('save.db').get_option(playerCard)
-except:
-    pass
+
+
+# try:
+    # Save('save.db').get_option(playerCard)
+    # playerCard = Save('save.db').get_option(playerCard)
+# except:
+#     pass
 
 # Temporary Main function
 def main(playerCard:Player):

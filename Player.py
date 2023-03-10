@@ -1,4 +1,6 @@
 from Monster import Monster
+import os
+from Save import Save
 
 class Player():
     def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status,):
@@ -82,4 +84,13 @@ class Player():
             if self.hp > self.baseHP:
                 self.hp == self.baseHP
 
-
+class CreateChacter():
+    def __init__(self) -> None:
+        pass
+    
+    def CreateChar(self, playerCard:Player):
+        if os.path.exists(Save.saveName):
+            Save('save.db').get_option(playerCard)
+            playerCard = Save('save.db').get_option(playerCard)        
+        else:
+            print("No Save Detected. Moving to Character Creation.")
