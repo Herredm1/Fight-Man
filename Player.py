@@ -6,11 +6,23 @@ class Player():
         self.exp = exp
         self.denf = denf  
         self.baseEXP = 50
-        self.baseHP = 50 + self.str + self.denf * 2 + self.lvl
-        self.atk = round((self.str + self.lvl) * 1.2)
-        self.blkpwr = round((self.denf + self.lvl) * 1.2)
+        self.baseHP = 50 + self.str + (self.denf * 2) + self.lvl
+        self.atk = round((self.str + self.lvl) * 2)
+        self.blkpwr = round((self.denf + self.lvl) * 2)
         self.hp = self.baseHP
         self.status = status
+        
+    # Displays the characters Stats    
+    def __str__(self):
+        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP]
+        
+        test = """
+        Name    : {0}
+        STR     : {3}
+        DEF     : {5}
+        HP      : {2}/{8}""".format(*details)
+        
+        return test
 
     # For future ATTRIBUTE Update
     def addSTR(self, num:int):
@@ -36,17 +48,6 @@ class Player():
             pass
         dmg = self.atk + bonus - monster.denf
         monster.hp -= dmg
-    
-    # Displays the characters Stats    
-    def __str__(self):
-        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP]
-        
-        test = """
-        Name: {0}
-        STR : {3}
-        DEF : {5}
-        HP  : {2}/{8}""".format(*details)
-        return test
             
     def heal(self):
         if self.hp < self.baseHP:
@@ -68,6 +69,4 @@ class Player():
             if self.hp > self.baseHP:
                 self.hp == self.baseHP
 
-
-test = Player('temp', 1 , 0, 0, 0, 'new')
 

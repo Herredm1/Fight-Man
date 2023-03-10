@@ -6,10 +6,10 @@ from Save import Save
 
 
 # Player Template
+player = Player("temp", 0, 0, 0, 0, "new")
 try:
-    player = Player("temp", 1, 0, 0, 0, "new")
     Save('save.db').get_option(player)
-    
+    player = Save('save.db').get_option(player)
 except:
     pass
 # For future Inventory update
@@ -58,6 +58,8 @@ power = [player.str - 1, player.str, player.str + 1]
 defense = [player.denf - 1, player.denf, player.denf + 1]
 
 # Temporary Main function
+
+
 def main(player: object):
 
     while True:
@@ -82,7 +84,8 @@ def main(player: object):
                         print("At least one point must be spent on Attack")
                         points = 15
                     elif points < 0:
-                        print("You used too many points. Restarting skills selection.")
+                        print(
+                            "You used too many points. Restarting skills selection.")
                         might = 0
                         protect = 0
                         points = 15
@@ -94,18 +97,10 @@ def main(player: object):
                     continue
             status = "ready"
             player = Player(playerName, 1, might, protect, 0, status)
-            saveTemp= {
-                'name': player.name,
-                'level': player.lvl,
-                'STR': player.str,
-                'DEF': player.denf,
-                'EXP': player.exp,
-                'status': player.status
-            }
-            Save('save.db').set_option(dict=saveTemp)
-        elif player.status == "ready":
-            sys("cls")
-            while player.status == "ready":
+            Save('save.db').set_option(player)
+
+        while True:
+            if player.status == "ready":
                 try:
                     playGame = int(
                         input(
@@ -127,69 +122,100 @@ def main(player: object):
                         )
                         combat(player, picked_monster)
                     elif playGame == 2:
-                        sys.exit()
-
+                        break
+                    elif playGame == 3:
+                        break
                 except:
                     print("Invalid selection! Try again")
                     continue
                 if player.hp <= 0:
                     player.status = "defeat"
+                    pass
                 else:
                     player.status = "victory"
-        elif player.status == "victory":
-            sys("cls")
-            try:
-                playGame = int(
-                    input(
-                        f"""
-                                         That was amazaing! You defeated {picked_monster.name}. What would you like to do
-                                        
-                                            {player}
-                                        
-                                                    1. Fight
-                                                    2. Heal
-                                                    3. Exit 
-                                                    
-                                                selection: """
-                    )
-                )
-                if playGame == 1:
-                    picked_monster = monsterPicker(
-                        monsterNames, levels, power, defense, player
-                    )
-                    combat(player, picked_monster)
-                if playGame == 2:
-                    player.heal()
-                    print(player.hp)
-                    player.status = "ready"
-            except:
-                print("Invalid selection! Try again")
-                continue
 
-            if player.hp <= 0:
-                player.status = "defeat"
-
-        elif player.status == "defeat":
-            sys("cls")
-            try:
-                playGame = int(
-                    input(
-                        f"""Looks like {picked_monster.name} whoooped your ass. What are you going to do about that?
-                                                    
-                                                    1.Heal
-                                                    2.Exit
-                                                    
-                                                selection: """
+            elif player.status == "victory":
+                sys("cls")
+                try:
+                    playGame = int(
+                        input(
+                            f"""
+                                            That was amazaing! You defeated {picked_monster.name}. What would you like to do
+                                            
+                                                {player}
+                                            
+                                                        1. Fight
+                                                        2. Heal
+                                                        3. Exit 
+                                                        
+                                                    selection: """
+                        )
                     )
-                )
-                if playGame == 1:
-                    player.heal()
-                    player.status = "ready"
-                elif playGame == 2:
-                    sys.exit()
-            except:
-                print("Invalid selection! Try again")
-                continue
+                    if playGame == 1:
+                        picked_monster = monsterPicker(
+                            monsterNames, levels, power, defense, player
+                        )
+                        combat(player, picked_monster)
+                    elif playGame == 2:
+                        player.heal()
+                        print(player.hp)
+                        player.status = "ready"
+                    elif playGame == 3:
+                        Save('save.db').set_option(player)
+                        break
+                except:
+                    print("Invalid selection! Try again")
+                    continue
+
+                if player.hp <= 0:
+                    player.status = "defeat"
+                    pass
+
+            elif player.status == "defeat":
+                sys("cls")
+                try:
+                    playGame = int(
+                        input(
+                            f"""Looks like {picked_monster.name} whoooped your ass. What are you going to do about that?
+                                                        
+                                                        {player.hp}/{player.baseHP}
+                                                        
+                                                        1.Heal
+                                                        2.Exit
+                                                        
+                                                    selection: """
+                        )
+                    )
+                    if playGame == 1:
+                        player.heal()
+                        player.status = "ready"
+                        sys('cls')
+                    elif playGame == 2:
+                        Save('save.db').set_option(player)
+                        break
+                    print("Invalid selection! Try again")
+                    continue
+                except:
+                    playGame = int(
+                        input(
+                            f"""Welcome back, you're currently in the hospital. What would you like to do??
+                                                        
+                                                        1.Heal
+                                                        2.Exit
+                                                        
+                                                    selection: """
+                        )
+                    )
+                    if playGame == 1:
+                        player.heal()
+                        player.status = "ready"
+                        sys('cls')
+                    elif playGame == 2:
+                        Save('save.db').set_option(player)
+                        break
+                    print("Invalid selection! Try again")
+                    continue
+        exit()
 
 
 main(player)

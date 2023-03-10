@@ -17,7 +17,6 @@ def combat(player:object, monster:object):
             monster.hp = 0
             print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
             print(f'Congratulations! You have defeated {monster.name}')
-            player.status = 'victory'
             print('Heading back home')
             input("Press enter to continue....")
             break
@@ -34,9 +33,8 @@ def combat(player:object, monster:object):
         if player.hp <= 0:
             player.hp = 0
             print(f'{monster.name} Hit for: {dmg}. Player health at {player.hp}')
-            print(f'The mighty {player.name} has been defeated by {monster.name}')
-            print('Taking your character to the Hospital')
-            player.status = 'defeat'
+            time.sleep(1)
+            print(f'The mighty {player.name} has been defeated by {monster.name}. Taking your character to the Hospital')
             input('Press enter to continue....')
             break
         
