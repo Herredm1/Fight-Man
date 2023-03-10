@@ -46,7 +46,7 @@ class Player():
             bonus = modifier
         else:
             pass
-        dmg = self.atk + bonus - monster.denf
+        dmg = self.atk + bonus - monster.blkpwr
         monster.hp -= dmg
             
     def heal(self):

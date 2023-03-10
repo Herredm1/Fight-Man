@@ -6,15 +6,15 @@ class Monster():
         self.hp = hp
         self.str = str
         self.denf = denf
-        self.atk = round((self.str + self.lvl )* 2 )
-        self.blkpwr = round((self.denf + self.denf) * 2)
+        self.atk = round((self.str + self.lvl )* 1.2 )
+        self.blkpwr = round((self.denf + self.denf) * 1.2)
         
     def monAttack(self, player:object, modifier:int=None):
         if modifier > 0:
             bonus = modifier
         else:
             pass
-        dmg = self.atk + bonus - player.denf
+        dmg = self.atk + bonus - player.blkpwer
         player.hp -= dmg
     
     def healthUpdate(self, dmg:int=None):

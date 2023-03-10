@@ -117,9 +117,7 @@ def main(player: object):
                         )
                     )
                     if playGame == 1:
-                        picked_monster = monsterPicker(
-                            monsterNames, levels, power, defense, player
-                        )
+                        picked_monster = monsterPicker(monsterNames, levels, power, defense, player=player)
                         combat(player, picked_monster)
                     elif playGame == 2:
                         break
