@@ -27,15 +27,12 @@ class Status:
                 if int(playGame) == 1:
                     monster = monsterPicker(player=playerCard)
                     combat(playerCard, monster)
-                    break
                 elif int(playGame) == 2:
                     playerCard.heal_and_status()
                     sys('cls')
                 elif int(playGame) == 3:
-                    Save(playerCard.name).set_option_monster(monster=monster)
-                    Save(playerCard.name).set_option_player(playerCard=playerCard)
+                    Save(playerCard.name).save_state(playerCard, monster)
                     playerCard.set_status('exit')
-                    return playerCard, monster
             except ValueError:
                 print("Invalid selection. Please try again")
                 
@@ -61,13 +58,11 @@ class Status:
                 if int(playGame) == 1:
                     picked_monster = monsterPicker(player=playerCard)
                     combat(playerCard, picked_monster)
-                    break
                 elif int(playGame) == 2:
                     playerCard.heal_and_status()
                     print(playerCard.hp)
                 elif int(playGame) == 3:
-                    Save(playerCard.name).set_option_monster(monster=monster)
-                    Save(playerCard.name).set_option_player(playerCard=playerCard)
+                    Save(playerCard.name).save_state(playerCard, monster)
                     playerCard.set_status('exit')
                     return playerCard, monster
             except ValueError:
@@ -91,10 +86,9 @@ class Status:
                         playerCard.heal_and_status()
                         break
                     elif int(playGame) == 2:
-                        Save(playerCard.name).set_option_monster(monster=monster)
-                        Save(playerCard.name).set_option_player(playerCard=playerCard)
+                        playerCard, monster = Save(playerCard.name).save_state(playerCard, monster)
                         playerCard.set_status('exit')
-                        return playerCard, monster
+                        break
                     exit()
                 except ValueError:
                     print("Invalid selection! Try again")

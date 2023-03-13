@@ -24,13 +24,11 @@ def combat(playerCard:Player, monster:Monster):
             print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
             print(f'Congratulations! You have defeated {monster.name}')
             playerCard.set_status('victory')
-            Save(playerCard.name).set_option_player(playerCard=playerCard)
-            Save(playerCard.name).set_option_monster(monster=monster)
+            Save(playerCard.name).save_state(playerCard, monster)
             print('Heading back home')
             playerCard.addEXP(monster)
             time.sleep(3)
-            print(Monster)
-            break
+            return
         time.sleep(1)
         die = roll_dice()
         # print(f'Die Value: {die}')
@@ -47,8 +45,7 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(1)
             print(f'The mighty {playerCard.name} has been defeated by {monster.name}. Taking your character to the Hospital')
             playerCard.set_status('defeat')
-            Save(playerCard.name).set_option_monster(monster=monster)
-            Save(playerCard.name).set_option_player(playerCard=playerCard)
+            Save(playerCard.name).save_state(playerCard, monster)
             time.sleep(3)
-            break
+            return
         

@@ -24,8 +24,7 @@ def createChar():
             playerCard = Player(playerName, 1, might, points, 0, "ready")
             playerCard.calculateAtkDef()
             saveFile = playerCard.name
-            Save(saveFile).set_option_player(playerCard)
             monster = monsterPicker(player=playerCard)
-            Save(saveFile).set_option_monster(monster=monster)
+            Save(saveFile).save_state(playerCard, monster)
             playGame(playerCard=playerCard, monster=monster)
                 
