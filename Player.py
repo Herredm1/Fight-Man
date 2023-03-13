@@ -1,6 +1,6 @@
 from Monster import Monster
 import os
-from Save import Save
+# from Save import Save
 
 class Player():
     def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status, baseXP:int=50,):

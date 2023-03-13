@@ -3,11 +3,12 @@ from Monster import Monster
 from roll import roll_dice
 from Save import Save 
 import time 
+from os import system as sys
 
 
 def combat(playerCard:Player, monster:Monster):
-    monsterSave = Save('save.db').set_option_monster(monster)
-    playerSave = Save('save.db').set_option_player(playerCard)
+    sys('cls')
+    print(f"{playerCard} vs {monster}")
     while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
         # print(f'Die Value: {die}')
@@ -23,11 +24,12 @@ def combat(playerCard:Player, monster:Monster):
             print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
             print(f'Congratulations! You have defeated {monster.name}')
             playerCard.set_status('victory')
-            monsterSave
-            playerSave
+            Save(playerCard.name).set_option_player(playerCard=playerCard)
+            Save(playerCard.name).set_option_monster(monster=monster)
             print('Heading back home')
             playerCard.addEXP(monster)
             time.sleep(3)
+            print(Monster)
             break
         time.sleep(1)
         die = roll_dice()
@@ -45,9 +47,8 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(1)
             print(f'The mighty {playerCard.name} has been defeated by {monster.name}. Taking your character to the Hospital')
             playerCard.set_status('defeat')
-            monsterSave = Save('save.db').set_option_monster(monster)
-            playerSave = Save('save.db').set_option_player(playerCard)
+            Save(playerCard.name).set_option_monster(monster=monster)
+            Save(playerCard.name).set_option_player(playerCard=playerCard)
             time.sleep(3)
             break
-
         

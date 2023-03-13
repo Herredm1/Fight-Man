@@ -17,11 +17,21 @@ class Monster():
     #     dmg = self.atk + bonus - player.blkpwer
     #     player.hp -= dmg
     
+    
     def healthUpdate(self, dmg:int=None):
         if dmg > 0:
             self.hp -= dmg
     
-    def charDetail(self):
+    def __str__(self):
         details = [self.name, self.lvl, self.hp, self.str, self.denf, self.atk, self.blkpwr]
-        for detail in details:
-            print(detail)
+        
+        test ="""
+        Name    : {0}
+        Level   : {1}
+        HP      : {2}
+        ATK     : {5}
+        BLK     : {6}
+        """.format(*details)
+        
+        return test
+            
