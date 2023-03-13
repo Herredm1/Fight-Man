@@ -4,14 +4,15 @@ from roll import roll_dice
 from Save import Save 
 import time 
 
+
 def combat(playerCard:Player, monster:Monster):
     monsterSave = Save('save.db').set_option_monster(monster)
     playerSave = Save('save.db').set_option_player(playerCard)
-    while playerCard.hp > 0 and monster.hp > 0:
+    while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
         # print(f'Die Value: {die}')
         time.sleep(1)
-        dmg = playerCard.atk + die - monster.blkpwr
+        dmg = playerCard.atkPower + die - monster.blkpwr
         monster.healthUpdate(dmg=dmg)
         if dmg <= 0:
             print("You missed!")
@@ -32,7 +33,7 @@ def combat(playerCard:Player, monster:Monster):
         die = roll_dice()
         # print(f'Die Value: {die}')
         time.sleep(1)
-        dmg = monster.atk + die - playerCard.blkpwr
+        dmg = monster.atk + die - playerCard.blkPower
         playerCard.healthUpdate(dmg=dmg, heal=0)
         if dmg <= 0:
             print(f"{monster.name} missed!")
@@ -42,10 +43,11 @@ def combat(playerCard:Player, monster:Monster):
             playerCard.hp = 0
             print(f'{monster.name} Hit for: {dmg}. Player health at {playerCard.hp}')
             time.sleep(1)
-            playerCard.set_status('defeat')
             print(f'The mighty {playerCard.name} has been defeated by {monster.name}. Taking your character to the Hospital')
-            monsterSave
-            playerSave
+            playerCard.set_status('defeat')
+            monsterSave = Save('save.db').set_option_monster(monster)
+            playerSave = Save('save.db').set_option_player(playerCard)
             time.sleep(3)
+            break
 
         

@@ -3,7 +3,7 @@ import os
 from Save import Save
 
 class Player():
-    def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status, baseXP:int=50):
+    def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status, baseXP:int=50,):
         self.name = name
         self.lvl = lvl
         self.str = str 
@@ -11,14 +11,14 @@ class Player():
         self.denf = denf  
         self.baseEXP = baseXP
         self.baseHP = 50 + self.str + (self.denf * 2) + self.lvl
-        self.atk = (self.str * 3 + self.lvl) 
-        self.blkpwr = (self.denf * 3 + self.lvl)
+        self.atkPower = (self.str + self.lvl) * 3 
+        self.blkPower = (self.denf + self.lvl) * 3
         self.hp = self.baseHP
         self.status = status
         
     # Displays the characters Stats    
     def __str__(self):
-        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atk, self.blkpwr, self.baseHP, self.status, self.exp, self.baseEXP, self.lvl]
+        details = [self.name, self.lvl, self.hp, self.str, self.exp,self.denf, self.atkPower, self.blkPower, self.baseHP, self.status, self.exp, self.baseEXP, self.lvl]
         
         test = """
         Name    : {0}
@@ -59,6 +59,7 @@ class Player():
             self.addDFN(1)
             self.exp = 0
             self.calculateBaseEXP()
+            self.calculateAtkDef()
             
         else:
             pass
@@ -102,35 +103,7 @@ class Player():
             self.hp += heal
             if self.hp > self.baseHP:
                 self.hp == self.baseHP
-
-class CreateChacter():
-    def __init__(self):
-        pass
     
-    def createChar(self, playerCard:Player, ):
-        if os.path.exists('save.db.bak'):
-            playerCard = Save('save.db').get_option(playerCard)
-            return playerCard        
-        else:
-            print("No Save Detected. Moving to Character Creation.")
-            playerCard = Player('temp',1,0,0,0,'new')
-            
-        points = 15
-        while points > 0 and playerCard.status == 'new':
-            playerName = input("What is your name Warrior: ")
-            # try:
-            might = int(input(f"""You have a total of {points}pts. How much Strength would you like? The remaing will be allocated to your DEF. """))
-            if might > 14 or might == 0 or might == None:
-                print("You've used too many points / Entered 0 / Entered nothing")
-                continue
-            elif might == 15:
-                print("You must assign one point to Defense")
-                continue
-            elif might > 0:
-                points -= might
-                playerCard = Player(playerName, 1, might, points, 0, "ready")
-                Save('save.db').set_option_player(playerCard)
-                return playerCard
-            # except:
-            #     print("Invalid selection! Try again")
-            #     continue
+    def calculateAtkDef(self):
+        self.atkPower = (self.str + self.lvl) * 3
+        self.blkPower = (self.denf + self.lvl) * 3

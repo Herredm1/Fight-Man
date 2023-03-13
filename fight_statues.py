@@ -11,7 +11,6 @@ class Status:
     
     def ready_status(self, playerCard:Player, monster:Monster):
         while playerCard.status == 'ready':
-            sys('cls')
             try:
                 playGame = input(f"""                             What would you like to do
                                 
