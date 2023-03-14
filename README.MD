@@ -15,15 +15,12 @@ New Game: start a new game
 Load Game: load a previously saved game
 Exit: exit the game
 If you select "New Game", you will be prompted to create a new player character. After creating your character, you will enter the game and be presented with a menu of options:
-Fight: choose a monster to fight
-Heal: heal your character
+Fight: choose a monster to fight. After defeating a monster, you will gain experience points and level up if you have gained enough experience points. 
+Heal: heal your character. If you are currently in the Hosiptal, you'll be fully healed and ready for combat.
 Exit to Main Menu: return to the main menu
 If you select "Load Game", you will be able to choose from a list of previously saved games. After selecting a saved game, you will enter the game and resume from where you left off.
-During a fight, you will be presented with a menu of options:
-Attack: attack the monster
-Defend: defend against the monster's attack
-Heal: heal your character
-After defeating a monster, you will gain experience points and level up if you have gained enough experience points. You will then be presented with a menu of options:
+
+You will then be presented with a menu of options:
 Fight: choose another monster to fight
 Heal: heal your character
 Exit to Main Menu: return to the main menu
