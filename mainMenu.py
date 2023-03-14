@@ -1,69 +1,62 @@
-from Player import Player
-from Monster import Monster
-from Save import Save
-from characterCreate import createChar
+import Save
+import time
+import globalFunctions
 import os
-from main_game import main
+import main_game
 
-directory = './saves/' 
-extension = '.bak'  
-              
-files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]  
 
-print(files)
 
-while True:
-    banner =''' █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████    ▄▄▄█████▓ ▒█████  
-        ▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀    ▓  ██▒ ▓▒▒██▒  ██▒
-        ▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███      ▒ ▓██░ ▒░▒██░  ██▒
-        ░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄    ░ ▓██▓ ░ ▒██   ██░
-        ░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒     ▒██▒ ░ ░ ████▓▒░
-        ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░     ▒ ░░   ░ ▒░▒░▒░ 
-        ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░       ░      ░ ▒ ▒░ 
-        ░   ░     ░     ░ ░   ░        ░ ░ ░ ▒  ░      ░      ░        ░      ░ ░ ░ ▒  
-            ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░                ░ ░  
-                                ░                                                        
-        █████▒██▓  ▄████  ██░ ██ ▄▄▄█████▓    ███▄ ▄███▓ ▄▄▄       ███▄    █           
-        ▓██   ▒▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █           
-        ▒████ ░▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒          
-        ░▓█▒  ░░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒          
-        ░▒█░   ░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░          
-        ▒ ░   ░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒           
-        ░      ▒ ░  ░   ░  ▒ ░▒░ ░    ░       ░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░          
-        ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░      ░     ░   ▒      ░   ░ ░           
-                ░        ░  ░  ░  ░                   ░         ░  ░         ░          
+def menu():
+    directory = './saves/' 
+    extension = '.bak'  
                 
-                
+    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]  
+    
+    while True:
+        os.system('cls')
+        try:
+            banner = globalFunctions.displayBanner()
+            print(banner)
                                                                                             
-                                                                                            '''
     
-    print(banner)
-                                                                                    
-
-    options = ['New Game', 'Load Game', 'Exit']
-    
-    num = 1
-    for option in options:
-        print(f'{num}. {option}')
-        num +=1 
-    
-    menu_selection = int(input('Option:'))
-    
-    if menu_selection == 1:
-        createChar()
-    if menu_selection == 2:
-        select_dict = {}
-        num =1
-        for file in files:
-            print(f'{num}. {file}')
-            select_dict.update({num:file})
-            num += 1
+            options = ['New Game', 'Load Game', 'Exit']
             
-        load_option = int(input('Option:'))
+            num = 1
+            for option in options:
+                print(f'{num}. {option}')
+                num +=1 
             
-        file = select_dict[load_option]    
-        # Save(file).load_state()
-        playerCard, monster = Save(file).load_state()
-        
-        main(playerCard, monster)
-        
+            menu_selection = int(input('Option:'))
+            
+            if menu_selection == 1:
+                playerCard, monster = globalFunctions.createChar()
+                main_game.main(playerCard, monster)
+            elif menu_selection == 2:
+                while menu_selection == 2:
+                    if len(files) == 0:
+                        print("There are no Saves")
+                        time.sleep(2)
+                        break
+                    try:
+                        select_dict = {}
+                        num =1
+                        for file in files:
+                            print(f'{num}. {file}')
+                            select_dict.update({num:file})
+                            num += 1  
+                        load_option = int(input('Option:'))
+                        file = select_dict[load_option]    
+                        playerCard, monster = Save.Save(file).load_state()
+                        main_game.main(playerCard, monster)
+                        break
+                    except:
+                        print("Invalid selection! Try again")
+                        time.sleep(2)
+                        continue
+            elif menu_selection == 3:
+                exit()
+        except ValueError:
+            print("Invalid selection! Try again")
+            time.sleep(2)
+            continue
+menu()       

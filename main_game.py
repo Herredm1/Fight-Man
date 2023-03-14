@@ -1,16 +1,13 @@
 from Player import Player
 from Monster import Monster
 from Save import Save
-from mobGenerator import monsterPicker
 from os import system as sys
-from combat import combat
-
-
+from globalFunctions import monsterPicker, combat
+import time
 
 def main(playerCard:Player, monster:Monster):
     
     while True:
-        playerCard, monster = Save(playerCard.name).load_state()
         sys('cls')
         if playerCard.status == "ready":
             print(playerCard)
@@ -18,20 +15,19 @@ def main(playerCard:Player, monster:Monster):
                                 
                                         1. Fight
                                         2. Heal
-                                        3. Exit & Save
+                                        3. Exit to Main Menu
                                         
                                         selection: """)
             
             try:
                 if int(playGame) == 1:
                     monster = monsterPicker(player=playerCard)
-                    combat(playerCard, monster)
+                    playerCard, monster = combat(playerCard, monster)
                 elif int(playGame) == 2:
                     playerCard.heal_and_status()
                     sys('cls')
                 elif int(playGame) == 3:
                     Save(playerCard.name).save_state(playerCard, monster)
-                    playerCard.set_status('exit')
             except ValueError:
                 print("Invalid selection. Please try again")
 
@@ -45,21 +41,20 @@ def main(playerCard:Player, monster:Monster):
                                         
                                                     1. Fight
                                                     2. Heal
-                                                    3. Exit 
+                                                    3. Exit to Main Menu
                                                     
                                                 selection: """
                     )
             try:
                 if int(playGame) == 1:
-                    picked_monster = monsterPicker(player=playerCard)
-                    combat(playerCard, picked_monster)
-                    playerCard, monster = Save(playerCard.name).load_state()
+                    monster = monsterPicker(player=playerCard)
+                    playerCard, monster = combat(playerCard, monster)
+                    # playerCard, monster = Save(playerCard.name).load_state()
                 elif int(playGame) == 2:
                     playerCard.heal_and_status()
-                    print(playerCard.hp)
+                    continue
                 elif int(playGame) == 3:
                     Save(playerCard.name).save_state(playerCard, monster)
-                    playerCard.set_status('exit')
                     return playerCard, monster
             except ValueError:
                     print("Invalid selection. Please try again")
@@ -73,7 +68,7 @@ def main(playerCard:Player, monster:Monster):
                                                             {playerCard.hp}/{playerCard.baseHP}
                                                             
                                                             1.Heal
-                                                            2.Exit
+                                                            2.Exit to Main Menu
                                                             
                                                         selection: """))
             try:
@@ -83,14 +78,8 @@ def main(playerCard:Player, monster:Monster):
                     continue
                 elif int(playGame) == 2:
                     playerCard, monster = Save(playerCard.name).save_state(playerCard, monster)
-                    playerCard.set_status('exit')
-                    break
-                exit()
+                    return
             except ValueError:
-                
                 print("Invalid selection! Try again")
+                time.sleep(2)
                 continue
-        
-        elif playerCard.status == 'exit':
-            exit()
-            
