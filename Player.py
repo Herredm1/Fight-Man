@@ -1,6 +1,5 @@
 from Monster import Monster
-import os
-# from Save import Save
+
 
 class Player():
     def __init__(self, name, lvl:int, str:int, denf:int, exp:int, status, baseXP:int=50,):
@@ -85,6 +84,7 @@ class Player():
             pass
         else:
             self.status = 'victory'
+            
     
     # How health is updated for combat and healing        
     def healthUpdate(self, dmg:int=0, heal:int=0):

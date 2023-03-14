@@ -6,8 +6,9 @@ class Monster():
         self.hp = hp
         self.str = str
         self.denf = denf
-        self.atk = self.str + self.lvl * 2 
-        self.blkpwr = self.denf + self.denf * 2
+        self.atkPower = self.str + self.lvl * 2 
+        self.blkPower = self.denf + self.denf * 2
+        self.baseHP = self.hp
         
     # def monAttack(self, player:object, modifier:int=None):
     #     if modifier > 0:
