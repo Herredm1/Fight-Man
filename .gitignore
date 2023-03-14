@@ -11,3 +11,7 @@ save2.db.bak
 test_Game.py
 test.py
 *test*.py
+main_menu.py
+main_game.py
+/venv/
+saves/*
