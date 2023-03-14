@@ -9,6 +9,10 @@ import main_game
 def menu():
     directory = './saves/' 
     extension = '.bak'  
+    if os.path.exists(directory):
+        pass
+    else:
+        os.mkdir(directory)
                 
     files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]  
     
@@ -23,7 +27,7 @@ def menu():
             
             num = 1
             for option in options:
-                print(f'{num}. {option}')
+                print('                         ',f'{num}. {option}')
                 num +=1 
             
             menu_selection = int(input('Option:'))
@@ -33,6 +37,8 @@ def menu():
                 main_game.main(playerCard, monster)
             elif menu_selection == 2:
                 while menu_selection == 2:
+                    os.system('cls')
+                    print(banner)
                     if len(files) == 0:
                         print("There are no Saves")
                         time.sleep(2)
