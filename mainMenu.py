@@ -16,10 +16,11 @@ def menu():
             
             num = 1
             for option in options:
-                print(f'{num:<30}. {option}')
+                print(f'                               {num}. {option}')
                 num +=1 
             
-            menu_selection = int(input('Option:'))
+            menu_selection = int(input('''                                        
+                                Option:'''))
             
             # Pressing 1 will bring you to the Character Creation.
             if menu_selection == 1:
