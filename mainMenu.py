@@ -11,8 +11,7 @@ def menu():
         try:
             banner = globalFunctions.displayBanner()
             print(banner)
-                                                                                            
-    
+            
             options = ['New Game', 'Load Game', 'Exit']
             
             num = 1
@@ -22,9 +21,12 @@ def menu():
             
             menu_selection = int(input('Option:'))
             
+            # Pressing 1 will bring you to the Character Creation.
             if menu_selection == 1:
                 playerCard, monster = globalFunctions.createChar()
                 main_game.main(playerCard, monster)
+                
+            # Pressing 2 will bring you into the load game selection.
             elif menu_selection == 2:
                 while menu_selection == 2:
                     os.system('cls')
@@ -49,7 +51,9 @@ def menu():
                         print("Invalid selection! Try again")
                         time.sleep(2)
                         continue
-            elif menu_selection == 3:
+                                  
+            # exit the program if the user selects option 3            
+            elif menu_selection == 3: 
                 exit()
         except ValueError:
             print("Invalid selection! Try again")
