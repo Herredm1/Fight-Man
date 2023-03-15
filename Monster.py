@@ -6,22 +6,33 @@ class Monster():
         self.hp = hp
         self.str = str
         self.denf = denf
-        self.atk = round((self.str + self.lvl )* 2 )
-        self.blkpwr = round((self.denf + self.denf) * 2)
+        self.atkPower = self.str + self.lvl * 2 
+        self.blkPower = self.denf + self.denf * 2
+        self.baseHP = self.hp
         
-    def monAttack(self, player:object, modifier:int=None):
-        if modifier > 0:
-            bonus = modifier
-        else:
-            pass
-        dmg = self.atk + bonus - player.denf
-        player.hp -= dmg
+    # def monAttack(self, player:object, modifier:int=None):
+    #     if modifier > 0:
+    #         bonus = modifier
+    #     else:
+    #         pass
+    #     dmg = self.atk + bonus - player.blkpwer
+    #     player.hp -= dmg
+    
     
     def healthUpdate(self, dmg:int=None):
         if dmg > 0:
             self.hp -= dmg
     
-    def charDetail(self):
+    def __str__(self):
         details = [self.name, self.lvl, self.hp, self.str, self.denf, self.atk, self.blkpwr]
-        for detail in details:
-            print(detail)
+        
+        test ="""
+        Name    : {0}
+        Level   : {1}
+        HP      : {2}
+        ATK     : {5}
+        BLK     : {6}
+        """.format(*details)
+        
+        return test
+            

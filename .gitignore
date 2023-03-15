@@ -2,3 +2,14 @@
 /getNames.py
 /names.txt
 /__pycache__
+*test*.py
+main_menu.py
+main_game.py
+/venv/
+/saves/*
+/saves
+playground.py
+output.txt
+ignore/__pycache__/test_main_game.cpython-311-pytest-7.2.2.pyc
+ignore
+/ignore/*
