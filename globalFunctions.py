@@ -107,25 +107,45 @@ def combat(playerCard:Player, monster:Monster):
             Save(playerCard.name).save_state(playerCard, monster)
             time.sleep(3)
             return playerCard, monster
+
         
 def createChar():
+    invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     os.system('cls')
     points = 15
     while points > 0:
-        playerName = input("What is your name Warrior: ")
-        # try:
-        might = int(input(f"""You have a total of {points}pts. How much Strength would you like? The remaing will be allocated to your DEF. """))
-        if might > 14 or might == 0 or might == None:
-            print("You've used too many points / Entered 0 / Entered nothing")
+        try:
+            playerName = input("What is your name Warrior: ")
+            for x in playerName:
+                if x in invalidChar:
+                    raise ValueError
+                elif playerName == None:
+                    raise ValueError
+                else:
+                    continue
+        except ValueError:
+            print('invalid Character in Player Name')
+            time.sleep(2)
+            os.system('cls')
             continue
-        elif might == 15:
-            print("You must assign one point to Defense")
-            continue
-        elif might > 0:
-            points -= might
-            playerCard = Player(playerName, 1, might, points, 0, "ready")
-            playerCard.calculateAtkDef()
-            saveFile = playerCard.name
-            monster = monsterPicker(player=playerCard)
-            Save(saveFile).save_state(playerCard, monster)
-            return playerCard, monster                                                                                         
+        try:
+            might = int(input(f"""You have a total of {points}pts. How much Strength would you like? The remaing will be allocated to your DEF. """))
+            if might > 14 or might == 0 or might == None:
+                print("You've used too many points / Entered 0 / Entered nothing")
+                continue
+            elif might == 15:
+                print("You must assign one point to Defense")
+                continue
+            elif might > 0:
+                points -= might
+                playerCard = Player(playerName, 1, might, points, 0, "ready")
+                playerCard.calculateAtkDef()
+                saveFile = playerCard.name
+                monster = monsterPicker(player=playerCard)
+                Save(saveFile).save_state(playerCard, monster)
+                return playerCard, monster
+        except ValueError:
+            print("You've entered an Invalid character")
+            time.sleep(2)
+            os.system('cls')
+            continue                                                                                         
