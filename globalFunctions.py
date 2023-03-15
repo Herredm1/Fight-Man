@@ -116,10 +116,10 @@ def createChar():
     while points > 0:
         try:
             playerName = input("What is your name Warrior: ")
+            if not playerName:
+                raise ValueError
             for x in playerName:
                 if x in invalidChar:
-                    raise ValueError
-                elif playerName == None:
                     raise ValueError
                 else:
                     continue
