@@ -150,4 +150,15 @@ def createChar():
             print("You've entered an Invalid character")
             time.sleep(2)
             os.system('cls')
-            continue                                                                                         
+            continue
+        
+def refresh_load_files():
+    directory = './saves/' 
+    extension = '.bak'  
+    if os.path.exists(directory):
+        pass
+    else:
+        os.mkdir(directory)  
+        
+    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
+    return files                                                                                         

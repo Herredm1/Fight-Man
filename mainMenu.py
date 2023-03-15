@@ -4,17 +4,9 @@ import globalFunctions
 import os
 import main_game
 
-
-
 def menu():
-    directory = './saves/' 
-    extension = '.bak'  
-    if os.path.exists(directory):
-        pass
-    else:
-        os.mkdir(directory)  
-    
     while True:
+        save_files = globalFunctions.refresh_load_files()
         os.system('cls')
         try:
             banner = globalFunctions.displayBanner()
@@ -25,7 +17,7 @@ def menu():
             
             num = 1
             for option in options:
-                print('                         ',f'{num}. {option}')
+                print(f'{num:<30}. {option}')
                 num +=1 
             
             menu_selection = int(input('Option:'))
@@ -37,15 +29,14 @@ def menu():
                 while menu_selection == 2:
                     os.system('cls')
                     print(banner)
-                    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
-                    if len(files) == 0:
+                    if len(save_files) == 0:
                         print("There are no Saves")
                         time.sleep(2)
                         break
                     try:
                         select_dict = {}
                         num =1
-                        for file in files:
+                        for file in save_files:
                             print(f'{num}. {file}')
                             select_dict.update({num:file})
                             num += 1  
