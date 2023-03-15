@@ -118,6 +118,8 @@ def createChar():
             playerName = input("What is your name Warrior: ")
             if not playerName:
                 raise ValueError
+            elif 10 < len(playerName):
+                raise ValueError
             for x in playerName:
                 if x in invalidChar:
                     raise ValueError
