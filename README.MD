@@ -36,3 +36,7 @@ This game is a text-based adventure game where the player must fight and defeat 
 ## Main Gameplay       
 
 At the moment Gameplay is very limited. You can check the progress page to follow for future updates.
+
+## Progress Tracker
+
+https://github.com/users/Herredm1/projects/3/views/1
