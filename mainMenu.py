@@ -12,9 +12,7 @@ def menu():
     if os.path.exists(directory):
         pass
     else:
-        os.mkdir(directory)
-                
-    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]  
+        os.mkdir(directory)  
     
     while True:
         os.system('cls')
@@ -39,6 +37,7 @@ def menu():
                 while menu_selection == 2:
                     os.system('cls')
                     print(banner)
+                    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
                     if len(files) == 0:
                         print("There are no Saves")
                         time.sleep(2)
