@@ -5,7 +5,7 @@ This is a command-line game written in Python.
 This game is a text-based adventure game where the player must fight and defeat monsters in order to progress through the levels. The player must make strategic decisions on whether to attack, defend or heal during battles, and must also choose which monsters to fight in order to gain experience points and level up.
 
 ## Installation
-1. Clone the repository: git clone https://github.com/your-username/your-repository.git
+1. Clone the repository: git clone https://github.com/Herredm1/Fight-Man.git
 2. Navigate to the project directory: cd your-repository
 3. Install the required packages: pip install -r requirements.txt **NOT REQUIRED AT THE MOMENT**
 4. Run the game: python **mainMenu.py**
