@@ -10,3 +10,5 @@ saves/*
 playground.py
 output.txt
 ignore/__pycache__/test_main_game.cpython-311-pytest-7.2.2.pyc
+ignore
+/ignore
