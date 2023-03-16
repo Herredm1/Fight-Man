@@ -60,13 +60,15 @@ def monsterPicker(player:Player):
                                                                                             
 def combat(playerCard:Player, monster:Monster):
     os.system('cls')
-    print('\n' * 1)
-    print(f'Name: {playerCard.name:<20} Name: {monster.name}')
-    print(f'LVL: {playerCard.lvl:<20}  LVL: {monster.lvl}')
-    print(f'HP: {playerCard.hp:<20}   HP: {monster.hp}')
-    print(f'ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower}')
-    print(f'BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower}')
-    print('\n' * 1)
+    print('')
+    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
+    print(f'#  Name: {playerCard.name:<20} Name: {monster.name:<10}  #')
+    print(f'#  LVL: {playerCard.lvl:<20}  LVL: {monster.lvl:<10}   #')
+    print(f'#  HP: {playerCard.hp:<20}   HP: {monster.hp:<10}    #')
+    print(f'#  ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower:<10}   #')
+    print(f'#  BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower:<10}   #')
+    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
+    print('')
     while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
         time.sleep(1)
