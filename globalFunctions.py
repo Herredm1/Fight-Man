@@ -8,28 +8,25 @@ import os
 
 
 def displayBanner():
-    banner="""  █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████    ▄▄▄█████▓ ▒█████  
-        ▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀    ▓  ██▒ ▓▒▒██▒  ██▒
-        ▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███      ▒ ▓██░ ▒░▒██░  ██▒
-        ░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄    ░ ▓██▓ ░ ▒██   ██░
-        ░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒     ▒██▒ ░ ░ ████▓▒░
-        ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░     ▒ ░░   ░ ▒░▒░▒░ 
-        ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░       ░      ░ ▒ ▒░ 
-        ░   ░     ░     ░ ░   ░        ░ ░ ░ ▒  ░      ░      ░        ░      ░ ░ ░ ▒  
-            ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░                ░ ░  
-                                ░                                                        
-        █████▒██▓  ▄████  ██░ ██ ▄▄▄█████▓    ███▄ ▄███▓ ▄▄▄       ███▄    █           
-        ▓██   ▒▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █           
-        ▒████ ░▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒          
-        ░▓█▒  ░░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒          
-        ░▒█░   ░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░          
-        ▒ ░   ░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒           
-        ░      ▒ ░  ░   ░  ▒ ░▒░ ░    ░       ░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░          
-        ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░      ░     ░   ▒      ░   ░ ░           
-                ░        ░  ░  ░  ░                   ░         ░  ░         ░          
-                
-                
-                                                                                    """
+    banner="""
+ (  (             (                                     )          
+ )\))(   '   (    )\                  )       (      ( /(          
+((_)()\ )   ))\  ((_)   (     (      (       ))\     )\())   (     
+_(())\_)() /((_)  _     )\    )\     )\  '  /((_)   (_))/    )\    
+\ \((_)/ /(_))   | |   ((_)  ((_)  _((_))  (_))     | |_    ((_)   
+ \ \/\/ / / -_)  | |  / _|  / _ \ | '  \() / -_)    |  _|  / _ \   
+  \_/\_/  \___|  |_|  \__|  \___/ |_|_|_|  \___|     \__|  \___/   
+                                                                   
+ (                                     *                            
+ )\ )                   )      )     (  `                           
+(()/(   (    (  (    ( /(   ( /(     )\))(       )                  
+ /(_))  )\   )\))(   )\())  )\())   ((_)()\   ( /(    (             
+(_))_| ((_) ((_))\  ((_)\  (_))/    (_()((_)  )(_))   )\ )          
+| |_    (_)  (()(_) | |(_) | |_     |  \/  | ((_)_   _(_/(          
+| __|   | | / _` |  | ' \  |  _|    | |\/| | / _` | | ' \))         
+|_|     |_| \__, |  |_||_|  \__|    |_|  |_| \__,_| |_||_| 
+
+                                                                                        """
     return banner                        
                                                             
 def roll_dice(): 
@@ -63,12 +60,14 @@ def monsterPicker(player:Player):
                                                                                             
 def combat(playerCard:Player, monster:Monster):
     os.system('cls')
-    print(playerCard.name, monster.name, sep='                              ')
-    print(f'LVL : {playerCard.lvl}', f'{monster.lvl} : LVL  ', sep='                    ')
-    print(f'HP  : {playerCard.hp}/{playerCard.baseHP}', f'{monster.hp}/{monster.baseHP} :  HP  ', sep='            ')
-    print(f'ATK : {playerCard.atkPower}', f'{monster.atkPower} : ATK  ', sep='                  ')
-    print(f'BLK : {playerCard.blkPower}', f'{monster.blkPower} : BLK  ', sep='                   ')
     print('')
+    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
+    print(f'#  Name: {playerCard.name:<20} Name: {monster.name:<10}  #')
+    print(f'#  LVL: {playerCard.lvl:<20}  LVL: {monster.lvl:<10}   #')
+    print(f'#  HP: {playerCard.hp:<20}   HP: {monster.hp:<10}    #')
+    print(f'#  ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower:<10}   #')
+    print(f'#  BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower:<10}   #')
+    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
     print('')
     while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
@@ -118,6 +117,8 @@ def createChar():
             playerName = input("What is your name Warrior: ")
             if not playerName:
                 raise ValueError
+            elif 10 < len(playerName):
+                raise ValueError
             for x in playerName:
                 if x in invalidChar:
                     raise ValueError
@@ -148,4 +149,15 @@ def createChar():
             print("You've entered an Invalid character")
             time.sleep(2)
             os.system('cls')
-            continue                                                                                         
+            continue
+        
+def refresh_load_files():
+    directory = './saves/' 
+    extension = '.bak'  
+    if os.path.exists(directory):
+        pass
+    else:
+        os.mkdir(directory)  
+        
+    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
+    return files                                                                                         
