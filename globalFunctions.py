@@ -34,9 +34,9 @@ def roll_dice():
     die = random.randint(1,6)
     return die
 
-def monsterPicker(player:Player):
+def monsterPicker(player:Player, monsterName):
     
-    monsterNames = ["Kevin","Kelly","Mike","Daile","Marcile","Germain","Row","Gayla","Bobbe","Patrice","Lucia","Sorcha","Angela","Elvira","Sandie","Hedvige","Millie","Janina","Tasia","Daisi","Delia","Kessiah","Hyacinthia","Sybil","Zoe","Thia","Janaye","Dorothee","Trisha","Merilee","Zola","Anthe","Kellsie",]
+    # monsterNames = ["Kevin","Kelly","Mike","Daile","Marcile","Germain","Row","Gayla","Bobbe","Patrice","Lucia","Sorcha","Angela","Elvira","Sandie","Hedvige","Millie","Janina","Tasia","Daisi","Delia","Kessiah","Hyacinthia","Sybil","Zoe","Thia","Janaye","Dorothee","Trisha","Merilee","Zola","Anthe","Kellsie",]
     
     playerCard = player
     
@@ -51,10 +51,10 @@ def monsterPicker(player:Player):
     health = random.randint(50, 100)
     block = random.choice(defense)
     damage = random.choice(power)
-    name = random.choice(monsterNames)
+    # name = random.choice(monsterNames)
     
     
-    monster = Monster(name, Mlevel, health, damage, block)
+    monster = Monster(monsterName, Mlevel, health, damage, block)
     
     return monster 
                 
@@ -172,4 +172,8 @@ def refresh_load_files():
         os.mkdir(directory)  
         
     files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
-    return files                                                                                         
+    return files 
+
+# def event(playerCard:Player):
+    
+                                                                                            
