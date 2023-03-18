@@ -60,6 +60,11 @@ def monsterPicker(player:Player):
                 
                                                                                             
 def combat(playerCard:Player, monster:Monster):
+
+    #create crit change and crit multiplier for player combat
+    crit_chance = 0.2
+    crit_multiplier = 2
+
     os.system('cls')
     print('')
     rowlength = len(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
@@ -81,18 +86,29 @@ def combat(playerCard:Player, monster:Monster):
         print(f'#  BLK: {playerCard.blkPower:<20}   BLK: {monster.blkPower:<{width}}   #')
         print('# ' * math.ceil(rowlength / 2),'#', sep='')
     print('')
+
     while playerCard.hp > 0 or monster.hp > 0:
+        crit = random.random()
         die = roll_dice()
         time.sleep(1)
-        dmg = playerCard.atkPower + die - monster.blkPower
+        if crit < crit_chance:
+            dmg = (playerCard.atkPower + die) * crit_multiplier - monster.blkPower
+        else:
+            dmg = playerCard.atkPower + die - monster.blkPower
         monster.healthUpdate(dmg=dmg)
         if dmg <= 0:
             print("You missed!")
         elif dmg > 0 and monster.hp > 0:
-            print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
+            if crit < crit_chance:
+                print(f'Player Hit a Crit for: {dmg}! {monster.name} health at {monster.hp}')
+            else:
+                print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
         if monster.hp <= 0:
             monster.hp = 0
-            print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
+            if crit < crit_chance:
+                print(f'Player Hit a Crit for: {dmg}! {monster.name} health at {monster.hp}')
+            else:
+                print(f'Player Hit for: {dmg}. {monster.name} health at {monster.hp}')
             print(f'Congratulations! You have defeated {monster.name}')
             playerCard.set_status('victory')
             Save(playerCard.name).save_state(playerCard, monster)
