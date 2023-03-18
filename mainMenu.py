@@ -3,6 +3,7 @@ import time
 import globalFunctions
 import os
 import main_game
+from dbm import error
 
 def menu():
     while True:
@@ -48,11 +49,16 @@ def menu():
                         playerCard, monster = Save.Save(file).load_state()
                         main_game.main(playerCard, monster)
                         break
-                    except:
-                        print("Invalid selection! Try again")
+                    # catching exception error from dbm -> error
+                    except error:
+                        print("SAVE FILE ERROR, returning...")
                         time.sleep(2)
-                        continue
-                                  
+                        break
+                    # catching KeyError if save data is corrupt or missing in file.
+                    except KeyError:
+                        print("SAVE FILE ERROR, returning...")
+                        time.sleep(2)
+                        break
             # exit the program if the user selects option 3            
             elif menu_selection == 3: 
                 exit()
