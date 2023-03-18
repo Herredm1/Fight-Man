@@ -119,7 +119,6 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(3)
             return playerCard, monster
 
-        
 def createChar():
     invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     os.system('cls')
@@ -128,17 +127,22 @@ def createChar():
         try:
             playerName = input("What is your name Warrior: ")
             if not playerName:
+                os.system('cls')
+                print('Your name cannot be empty Warrior')
                 raise ValueError
             elif 10 < len(playerName):
+                os.system('cls')
+                print('Your name has to be 10 characters or less')
                 raise ValueError
             for x in playerName:
                 if x in invalidChar:
+                    os.system('cls')
+                    print('There is an invalid character in your name')
                     raise ValueError
                 else:
                     continue
         except ValueError:
-            print('invalid Character in Player Name')
-            time.sleep(2)
+            input('Press Enter to try again...')
             os.system('cls')
             continue
         try:
