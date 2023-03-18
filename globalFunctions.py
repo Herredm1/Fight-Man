@@ -119,7 +119,6 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(3)
             return playerCard, monster
 
-# TODO@cutiekeek #34 adjust character creation error messages to be more user firendly
 def createChar():
     invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     os.system('cls')
