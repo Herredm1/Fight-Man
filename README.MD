@@ -4,7 +4,14 @@ This is a command-line game written in Python.
 ## Description
 This game is a text-based adventure game where the player must fight and defeat monsters in order to progress through the levels. The player must make strategic decisions on whether to attack, defend or heal during battles, and must also choose which monsters to fight in order to gain experience points and level up.
 
-## Installation
+## Installation Git
+1. Clone the repository: git clone https://github.com/your-username/your-repository.git
+2. Navigate to the project directory: cd your-repository
+3. Install the required packages: pip install -r requirements.txt **NOT REQUIRED AT THE MOMENT**
+4. Run the game: python **mainMenu.py**
+
+
+## Installation Docker
 1. docker pull ghcr.io/herredm1/fightman:latest
 2. docker run -t -i -v /path/on/local:/saves DOCKER_IMAGE (This is to preserve your saves)
 3. Start the container and enjoy!
