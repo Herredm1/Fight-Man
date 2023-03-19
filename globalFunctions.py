@@ -60,7 +60,7 @@ def monsterPicker(player:Player):
                 
                                                                                             
 def combat(playerCard:Player, monster:Monster):
-    os.system('cls')
+    clearScreen()
     print('')
     rowlength = len(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
     width = len(monster.name) 
@@ -121,29 +121,29 @@ def combat(playerCard:Player, monster:Monster):
 
 def createChar():
     invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    os.system('cls')
+    clearScreen()
     points = 15
     while points > 0:
         try:
             playerName = input("What is your name Warrior: ")
             if not playerName:
-                os.system('cls')
+                clearScreen()
                 print('Your name cannot be empty Warrior')
                 raise ValueError
             elif 10 < len(playerName):
-                os.system('cls')
+                clearScreen()
                 print('Your name has to be 10 characters or less')
                 raise ValueError
             for x in playerName:
                 if x in invalidChar:
-                    os.system('cls')
+                    clearScreen()
                     print('There is an invalid character in your name')
                     raise ValueError
                 else:
                     continue
         except ValueError:
             input('Press Enter to try again...')
-            os.system('cls')
+            clearScreen()
             continue
         try:
             might = int(input(f"""You have a total of {points}pts. How much Strength would you like? The remaing will be allocated to your DEF. """))
@@ -164,7 +164,7 @@ def createChar():
         except ValueError:
             print("You've entered an Invalid character")
             time.sleep(2)
-            os.system('cls')
+            clearScreen()
             continue
         
 def refresh_load_files():
@@ -176,4 +176,10 @@ def refresh_load_files():
         os.mkdir(directory)  
         
     files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
-    return files                                                                                         
+    return files
+
+def clearScreen():
+    if os.name is 'nt':
+        clearScreen()
+    else:
+        os.system('clear')

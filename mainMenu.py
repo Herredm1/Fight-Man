@@ -1,13 +1,12 @@
 import Save
 import time
 import globalFunctions
-import os
 import main_game
 
 def menu():
     while True:
         save_files = globalFunctions.refresh_load_files()
-        os.system('cls')
+        globalFunctions.clearScreen()
         try:
             banner = globalFunctions.displayBanner()
             print(banner)
@@ -31,7 +30,7 @@ def menu():
             elif menu_selection == 2:
                 while menu_selection == 2:
                     save_files = globalFunctions.refresh_load_files()
-                    os.system('cls')
+                    globalFunctions.clearScreen()
                     print(banner)
                     if len(save_files) == 0:
                         print("There are no Saves")
