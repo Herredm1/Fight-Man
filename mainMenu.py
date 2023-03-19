@@ -30,6 +30,7 @@ def menu():
             # Pressing 2 will bring you into the load game selection.
             elif menu_selection == 2:
                 while menu_selection == 2:
+                    save_files = globalFunctions.refresh_load_files()
                     os.system('cls')
                     print(banner)
                     if len(save_files) == 0:
@@ -42,13 +43,19 @@ def menu():
                         for file in save_files:
                             print(f'{num}. {file}')
                             select_dict.update({num:file})
-                            num += 1  
+                            num += 1
+                        print(f'''{num}. Exit''')  
                         load_option = int(input('Option:'))
-                        file = select_dict[load_option]    
+                        if load_option is num:
+                            break
+                        elif load_option in select_dict:
+                            file = select_dict[load_option]
+                        else:
+                            raise KeyError    
                         playerCard, monster = Save.Save(file).load_state()
                         main_game.main(playerCard, monster)
                         break
-                    except:
+                    except KeyError:
                         print("Invalid selection! Try again")
                         time.sleep(2)
                         continue

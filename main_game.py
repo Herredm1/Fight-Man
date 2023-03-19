@@ -5,7 +5,7 @@ from os import system as sys
 from globalFunctions import monsterPicker, combat
 import time
 
-
+# Testing
 def main(playerCard:Player, monster:Monster):
     while True:
         pINFO = [playerCard.name, playerCard.lvl, playerCard.hp,playerCard.baseHP, playerCard.atkPower, playerCard.blkPower, playerCard.str, playerCard.denf,'Fight', 'Heal', 'Exit to Main Menu', monster.name, playerCard.exp, playerCard.baseEXP]

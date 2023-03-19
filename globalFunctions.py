@@ -4,6 +4,7 @@ from Save import Save
 import random
 import time
 import os
+import math
 
 
 
@@ -61,13 +62,24 @@ def monsterPicker(player:Player):
 def combat(playerCard:Player, monster:Monster):
     os.system('cls')
     print('')
-    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
-    print(f'#  Name: {playerCard.name:<20} Name: {monster.name:<10}  #')
-    print(f'#  LVL: {playerCard.lvl:<20}  LVL: {monster.lvl:<10}   #')
-    print(f'#  HP: {playerCard.hp:<20}   HP: {monster.hp:<10}    #')
-    print(f'#  ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower:<10}   #')
-    print(f'#  BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower:<10}   #')
-    print('# # # # # # # # # # # # # # # # # # # # # # # # #')
+    rowlength = len(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
+    width = len(monster.name) 
+    if (rowlength % 2) == 1:
+        print('# ' * math.ceil(rowlength / 2))
+        print(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
+        print(f'#  LVL: {playerCard.lvl:<20}  LVL: {monster.lvl:<{width}}   #')
+        print(f'#  HP: {playerCard.hp:<20}   HP: {monster.hp:<{width}}    #')
+        print(f'#  ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower:<{width}}   #')
+        print(f'#  BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower:<{width}}   #')
+        print('# ' * math.ceil(rowlength / 2))
+    else:
+        print('# ' * math.ceil(rowlength / 2),'#', sep='')
+        print(f'#  Name: {playerCard.name:<20}  Name: {monster.name}  #')
+        print(f'#  LVL: {playerCard.lvl:<20}   LVL: {monster.lvl:<{width}}   #')
+        print(f'#  HP: {playerCard.hp:<20}    HP: {monster.hp:<{width}}    #')
+        print(f'#  ATK: {playerCard.atkPower:<20}   ATK: {monster.atkPower:<{width}}   #')
+        print(f'#  BLK: {playerCard.blkPower:<20}   BLK: {monster.blkPower:<{width}}   #')
+        print('# ' * math.ceil(rowlength / 2),'#', sep='')
     print('')
     while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
@@ -107,7 +119,6 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(3)
             return playerCard, monster
 
-        
 def createChar():
     invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     os.system('cls')
@@ -116,17 +127,22 @@ def createChar():
         try:
             playerName = input("What is your name Warrior: ")
             if not playerName:
+                os.system('cls')
+                print('Your name cannot be empty Warrior')
                 raise ValueError
             elif 10 < len(playerName):
+                os.system('cls')
+                print('Your name has to be 10 characters or less')
                 raise ValueError
             for x in playerName:
                 if x in invalidChar:
+                    os.system('cls')
+                    print('There is an invalid character in your name')
                     raise ValueError
                 else:
                     continue
         except ValueError:
-            print('invalid Character in Player Name')
-            time.sleep(2)
+            input('Press Enter to try again...')
             os.system('cls')
             continue
         try:
