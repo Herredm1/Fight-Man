@@ -10,8 +10,8 @@ class Player():
         self.denf = denf  
         self.baseEXP = baseXP
         self.baseHP = 50 + self.str + (self.denf * 2) + self.lvl
-        self.atkPower = (self.str + self.lvl) * 3 
-        self.blkPower = (self.denf + self.lvl) * 3
+        self.atkPower = (self.str + self.lvl) * 2 
+        self.blkPower = (self.denf + self.lvl) * 2
         self.hp = self.baseHP
         self.status = status
         
@@ -105,5 +105,6 @@ class Player():
                 self.hp == self.baseHP
     
     def calculateAtkDef(self):
-        self.atkPower = (self.str + self.lvl) * 3
-        self.blkPower = (self.denf + self.lvl) * 3
+        
+        self.atkPower = (self.str + self.lvl) * 2
+        self.blkPower = (self.denf + self.lvl) * 2

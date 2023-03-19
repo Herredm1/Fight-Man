@@ -6,8 +6,9 @@ import random
 
 
 class Dungeon:
-    def __init__(self, dungeonName):
+    def __init__(self, dungeonName, dungeon_Area):
         self.dungeonName = dungeonName
+        self.dungeon_Area = dungeon_Area
         
     
     def generateBattle(self, playerCard):
@@ -25,13 +26,13 @@ class Dungeon:
         }
         
         monsterHigh_dict = {
-            1:['Spider', '']
+            1:['Spider', 'Goblin']
         }
         
         monsterBoss_Dict = {
             1:['Orc']
         }
         
-        dungeon = random
+        dungeon_Moster = random.choice()
         
         
