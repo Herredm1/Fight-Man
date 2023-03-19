@@ -24,7 +24,7 @@ class Monster():
             self.hp -= dmg
     
     def __str__(self):
-        details = [self.name, self.lvl, self.hp, self.str, self.denf, self.atk, self.blkpwr]
+        details = [self.name, self.lvl, self.hp, self.str, self.denf, self.atkPower, self.blkPower]
         
         test ="""
         Name    : {0}

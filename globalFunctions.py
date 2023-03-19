@@ -4,32 +4,30 @@ from Save import Save
 import random
 import time
 import os
+import math
 
 
 
 def displayBanner():
-    banner="""  █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████    ▄▄▄█████▓ ▒█████  
-        ▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀    ▓  ██▒ ▓▒▒██▒  ██▒
-        ▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███      ▒ ▓██░ ▒░▒██░  ██▒
-        ░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄    ░ ▓██▓ ░ ▒██   ██░
-        ░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒     ▒██▒ ░ ░ ████▓▒░
-        ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░     ▒ ░░   ░ ▒░▒░▒░ 
-        ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░       ░      ░ ▒ ▒░ 
-        ░   ░     ░     ░ ░   ░        ░ ░ ░ ▒  ░      ░      ░        ░      ░ ░ ░ ▒  
-            ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░                ░ ░  
-                                ░                                                        
-        █████▒██▓  ▄████  ██░ ██ ▄▄▄█████▓    ███▄ ▄███▓ ▄▄▄       ███▄    █           
-        ▓██   ▒▓██▒ ██▒ ▀█▒▓██░ ██▒▓  ██▒ ▓▒   ▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █           
-        ▒████ ░▒██▒▒██░▄▄▄░▒██▀▀██░▒ ▓██░ ▒░   ▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒          
-        ░▓█▒  ░░██░░▓█  ██▓░▓█ ░██ ░ ▓██▓ ░    ▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒          
-        ░▒█░   ░██░░▒▓███▀▒░▓█▒░██▓  ▒██▒ ░    ▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░          
-        ▒ ░   ░▓   ░▒   ▒  ▒ ░░▒░▒  ▒ ░░      ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒           
-        ░      ▒ ░  ░   ░  ▒ ░▒░ ░    ░       ░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░          
-        ░ ░    ▒ ░░ ░   ░  ░  ░░ ░  ░         ░      ░     ░   ▒      ░   ░ ░           
-                ░        ░  ░  ░  ░                   ░         ░  ░         ░          
-                
-                
-                                                                                    """
+    banner="""
+ (  (             (                                     )          
+ )\))(   '   (    )\                  )       (      ( /(          
+((_)()\ )   ))\  ((_)   (     (      (       ))\     )\())   (     
+_(())\_)() /((_)  _     )\    )\     )\  '  /((_)   (_))/    )\    
+\ \((_)/ /(_))   | |   ((_)  ((_)  _((_))  (_))     | |_    ((_)   
+ \ \/\/ / / -_)  | |  / _|  / _ \ | '  \() / -_)    |  _|  / _ \   
+  \_/\_/  \___|  |_|  \__|  \___/ |_|_|_|  \___|     \__|  \___/   
+                                                                   
+ (                                     *                            
+ )\ )                   )      )     (  `                           
+(()/(   (    (  (    ( /(   ( /(     )\))(       )                  
+ /(_))  )\   )\))(   )\())  )\())   ((_)()\   ( /(    (             
+(_))_| ((_) ((_))\  ((_)\  (_))/    (_()((_)  )(_))   )\ )          
+| |_    (_)  (()(_) | |(_) | |_     |  \/  | ((_)_   _(_/(          
+| __|   | | / _` |  | ' \  |  _|    | |\/| | / _` | | ' \))         
+|_|     |_| \__, |  |_||_|  \__|    |_|  |_| \__,_| |_||_| 
+
+                                                                                        """
     return banner                        
                                                             
 def roll_dice(): 
@@ -63,12 +61,25 @@ def monsterPicker(player:Player):
                                                                                             
 def combat(playerCard:Player, monster:Monster):
     os.system('cls')
-    print(playerCard.name, monster.name, sep='                              ')
-    print(f'LVL : {playerCard.lvl}', f'{monster.lvl} : LVL  ', sep='                    ')
-    print(f'HP  : {playerCard.hp}/{playerCard.baseHP}', f'{monster.hp}/{monster.baseHP} :  HP  ', sep='            ')
-    print(f'ATK : {playerCard.atkPower}', f'{monster.atkPower} : ATK  ', sep='                  ')
-    print(f'BLK : {playerCard.blkPower}', f'{monster.blkPower} : BLK  ', sep='                   ')
     print('')
+    rowlength = len(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
+    width = len(monster.name) 
+    if (rowlength % 2) == 1:
+        print('# ' * math.ceil(rowlength / 2))
+        print(f'#  Name: {playerCard.name:<20} Name: {monster.name}  #')
+        print(f'#  LVL: {playerCard.lvl:<20}  LVL: {monster.lvl:<{width}}   #')
+        print(f'#  HP: {playerCard.hp:<20}   HP: {monster.hp:<{width}}    #')
+        print(f'#  ATK: {playerCard.atkPower:<20}  ATK: {monster.atkPower:<{width}}   #')
+        print(f'#  BLK: {playerCard.blkPower:<20}  BLK: {monster.blkPower:<{width}}   #')
+        print('# ' * math.ceil(rowlength / 2))
+    else:
+        print('# ' * math.ceil(rowlength / 2),'#', sep='')
+        print(f'#  Name: {playerCard.name:<20}  Name: {monster.name}  #')
+        print(f'#  LVL: {playerCard.lvl:<20}   LVL: {monster.lvl:<{width}}   #')
+        print(f'#  HP: {playerCard.hp:<20}    HP: {monster.hp:<{width}}    #')
+        print(f'#  ATK: {playerCard.atkPower:<20}   ATK: {monster.atkPower:<{width}}   #')
+        print(f'#  BLK: {playerCard.blkPower:<20}   BLK: {monster.blkPower:<{width}}   #')
+        print('# ' * math.ceil(rowlength / 2),'#', sep='')
     print('')
     while playerCard.hp > 0 or monster.hp > 0:
         die = roll_dice()
@@ -108,7 +119,6 @@ def combat(playerCard:Player, monster:Monster):
             time.sleep(3)
             return playerCard, monster
 
-        
 def createChar():
     invalidChar = ['<', '>', ':','"', '/', '.','\\', '|', '?', '*',' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     os.system('cls')
@@ -116,16 +126,23 @@ def createChar():
     while points > 0:
         try:
             playerName = input("What is your name Warrior: ")
+            if not playerName:
+                os.system('cls')
+                print('Your name cannot be empty Warrior')
+                raise ValueError
+            elif 10 < len(playerName):
+                os.system('cls')
+                print('Your name has to be 10 characters or less')
+                raise ValueError
             for x in playerName:
                 if x in invalidChar:
-                    raise ValueError
-                elif playerName == None:
+                    os.system('cls')
+                    print('There is an invalid character in your name')
                     raise ValueError
                 else:
                     continue
         except ValueError:
-            print('invalid Character in Player Name')
-            time.sleep(2)
+            input('Press Enter to try again...')
             os.system('cls')
             continue
         try:
@@ -148,4 +165,15 @@ def createChar():
             print("You've entered an Invalid character")
             time.sleep(2)
             os.system('cls')
-            continue                                                                                         
+            continue
+        
+def refresh_load_files():
+    directory = './saves/' 
+    extension = '.bak'  
+    if os.path.exists(directory):
+        pass
+    else:
+        os.mkdir(directory)  
+        
+    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
+    return files                                                                                         
