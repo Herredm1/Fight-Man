@@ -179,7 +179,7 @@ def refresh_load_files():
     return files
 
 def clearScreen():
-    if os.name is 'nt':
-        clearScreen()
+    if os.name == 'nt':
+        os.system('cls')
     else:
         os.system('clear')
