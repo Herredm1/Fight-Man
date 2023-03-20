@@ -176,17 +176,17 @@ def refresh_load_files():
         files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
         if os.path.exists(directory):
             pass
+            return files
         else:
             os.mkdir(directory)
     else:
-        directory = './saves/'   
+        directory = 'saves/'   
         if os.path.exists(directory):
-            files = glob('./saves/*')
-            pass
+            files = glob('saves/*')
+            return files
         else:
             os.mkdir(directory)
             
-    return files
 
 def clearScreen():
     if sys.platform.startswith('win'):
