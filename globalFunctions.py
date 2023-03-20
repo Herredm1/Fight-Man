@@ -180,9 +180,9 @@ def refresh_load_files():
         else:
             os.mkdir(directory)
     else:
-        directory = 'saves/'   
+        directory = '../saves/'   
         if os.path.exists(directory):
-            files = glob('saves/*')
+            files = glob('../saves/*')
             return files
         else:
             os.mkdir(directory)
