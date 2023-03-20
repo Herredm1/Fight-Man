@@ -180,9 +180,10 @@ def refresh_load_files():
         else:
             os.mkdir(directory)
     else:
-        directory = '../saves/'   
+        directory = '/Fight-Man/saves/'
+         
         if os.path.exists(directory):
-            files = glob('../saves/*')
+            files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
             return files
         else:
             os.mkdir(directory)
