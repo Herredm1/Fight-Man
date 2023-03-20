@@ -1,11 +1,15 @@
 import Player
 import Monster
 import shelve
+import sys
 
 class Save():
     def __init__(self, fileName):
         self.fileName = fileName
-        self.dir = f"./saves/{fileName}"
+        if sys.platform.startswith('win'):
+            self.dir = f"./saves/{fileName}"
+        else:
+            self.dir = f"../saves/{fileName}"
     
     def save_state(self,playerCard:Player=None, monster:Monster=None):
         with shelve.open(self.dir)as db:
