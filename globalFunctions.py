@@ -5,6 +5,8 @@ import random
 import time
 import os
 import math
+import sys
+from glob import glob
 
 
 
@@ -168,18 +170,26 @@ def createChar():
             continue
         
 def refresh_load_files():
-    directory = './saves/' 
-    extension = '.bak'  
-    if os.path.exists(directory):
-        pass
+    if sys.platform.startswith('win'):
+        directory = './saves/' 
+        extension = '.bak'  
+        files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
+        if os.path.exists(directory):
+            pass
+        else:
+            os.mkdir(directory)
     else:
-        os.mkdir(directory)  
-        
-    files = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.endswith(extension)]
+        directory = './saves/'   
+        if os.path.exists(directory):
+            files = glob('./saves/*')
+            pass
+        else:
+            os.mkdir(directory)
+            
     return files
 
 def clearScreen():
-    if os.name == 'nt':
+    if sys.platform.startswith('win'):
         os.system('cls')
     else:
         os.system('clear')
