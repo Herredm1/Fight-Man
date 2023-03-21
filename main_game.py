@@ -2,14 +2,14 @@ from Player import Player
 from Monster import Monster
 from Save import Save
 from os import system as sys
-from globalFunctions import monsterPicker, combat
+from globalFunctions import monsterPicker, combat, clearScreen
 import time
 
 # Testing
 def main(playerCard:Player, monster:Monster):
     while True:
         pINFO = [playerCard.name, playerCard.lvl, playerCard.hp,playerCard.baseHP, playerCard.atkPower, playerCard.blkPower, playerCard.str, playerCard.denf,'Fight', 'Heal', 'Exit to Main Menu', monster.name, playerCard.exp, playerCard.baseEXP]
-        sys('cls')
+        clearScreen()
         if playerCard.status == "ready":
             banner = '''                                     What would you like to do?
             {0}
@@ -35,7 +35,7 @@ def main(playerCard:Player, monster:Monster):
                 print("Invalid selection. Please try again")
 
         elif playerCard.status == "victory":
-            sys('cls')
+            clearScreen()
             banner = '''        That was an Epic fight! {11} didn't even stand a chance. What would you like to do?
         
         
@@ -68,7 +68,7 @@ def main(playerCard:Player, monster:Monster):
             
 
         elif playerCard.status == "defeat":
-            sys('cls')
+            clearScreen()
             print(playerCard)
             banner = '''You're now in the Hospital. You were defeated by {11}. What would you like to do?
         
